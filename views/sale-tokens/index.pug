@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    include ../nav
+    div.container
+        if errors
+            each err in errors
+                p.alert.alert-danger #{err.msg}
+        h1.mt-5.justify-content-center.d-flex Venta de Tokens
+        form(name='sale-tokens', method='post')
+            .form-group.mt-5
+                small.text-muted Cantidad de Tokens:
+                label &nbsp#{user.token}
+                input.form-control(type='hidden', name='token', value=user.token)
+            .form-group
+                input.form-control(type='hidden', name='soldTokens', value=user.soldTokens)
+            .form-group
+                input.form-control(type='hidden', name='_id', value=user.id)
+            .form-group
+                label Cuantos deseas vender
+                small.text-muted ?
+                input.form-control(type='text', name='saleToken', placeholder='Cuantos deseas vender', maxlength=user.token.toString().length)
+            .form-group
+                label Precio
+                small.text-muted ?
+                input.form-control(type='text', name='valueToken', placeholder='Precio' value=user.valueToken)
+            .form-group.d-flex.justify-content-center
+                button.btn-outline-info Vender

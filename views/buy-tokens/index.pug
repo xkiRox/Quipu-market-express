@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+    include ../nav
+    div.container
+        h1.mt-5.justify-content-center.d-flex Compra de Tokens 
+        each token in tokens
+            form(name='tokens', method='post')
+                .row.mt-5
+                    .col-md-3
+                        h3 #{token.username}
+                        input.form-control(type='hidden', name='_id', value=token.id)
+                    .col-md-3
+                        small.text-muted Cantidad: #{token.saleToken}
+                    .col-md-3
+                        small.text-muted Precio: $#{token.valueToken}
+                        input.form-control(type='hidden', name='_valueToken', value=token.valueToken)
+                    .col-md-3
+                        if(token.saleToken)
+                            select(name='_buyToken')
+                                - var n = 0;
+                                while n <= token.saleToken
+                                    option #{n++}
+                .row.mt-5
+                    button.btn-outline-info Comprar

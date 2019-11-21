@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    include ../nav
+    div.container
+        small.text-muted Usuario
+        h1 #{user.username.toUpperCase()}
+        h3 Transacciones Realizadas
+        div.row
+            each transfer in transfers
+                div.col-md-6
+                    small.text-muted Fecha: 
+                    label #{transfer.date} 
+                div.col-md-6
+                    small.text-muted Valor: 
+                    label $#{transfer.value}
+            div.col-md-12
+                small.text-muted Total:
+                label &nbsp$#{total}
